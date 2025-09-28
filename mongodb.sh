@@ -13,7 +13,7 @@ LOG_FILE="$LOG_FOLDER/$SCRIPT_NAME.log"
 
 
 if [ $USERID -ne 0 ]; then 
- echo "Install with root user" | tee -a $LOG_FILE
+ echo "Install with root user"
  exit 1
 fi
 
