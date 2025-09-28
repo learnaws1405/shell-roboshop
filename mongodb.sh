@@ -28,7 +28,7 @@ else
 fi
 }
 
-cp mango.repo /etc/yum.repos.d/mongo.repo
+cp mongo.repo /etc/yum.repos.d/mongo.repo
 VALIDATE "$?" "Adding MongoDB repository"
 
 echo " Installing Mango BD"
