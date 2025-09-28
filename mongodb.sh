@@ -38,12 +38,16 @@ dnf list installed mongodb-org
         dnf install mongodb-org -y &>>$LOG_FILE
         VALIDATE "$?" "MongoDB"
     else
-        echo "mongodb already installed :: $Y SKIPPING $N"
+        echo -e mongodb already installed :: $Y SKIPPING $N"
         exit 1
     fi
 
 systemctl enable mongod &>>$LOG_FILE
 VALIDATE "$?" "MongoDB system enabled"
 
+sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
+VALIDATE "$?" "accessable to all IP's"
+
 systemctl start mongod &>>$LOG_FILE
 VALIDATE "$?" "MongoDB system started"
+
