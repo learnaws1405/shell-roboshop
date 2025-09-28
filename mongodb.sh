@@ -11,13 +11,14 @@ LOG_FOLDER="/var/log/shell-roboshop"
 SCRIPT_NAME=$( echo $0| cut -d "." -f1 )
 LOG_FILE="$LOG_FOLDER/$SCRIPT_NAME.log"
 
-mkdir -p $LOG_FOLDER
-echo " Script started : $(date)" | tee -a $LOG_FILE
 
 if [ $USERID -ne 0 ]; then 
  echo "Install with root user" | tee -a $LOG_FILE
  exit 1
 fi
+
+mkdir -p $LOG_FOLDER
+echo " Script started : $(date)" | tee -a $LOG_FILE
 
 VALIDATE(){
 if [ $1 -ne 0 ]; then 
