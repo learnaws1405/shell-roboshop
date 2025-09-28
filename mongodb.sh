@@ -31,7 +31,7 @@ fi
 cp mongo.repo /etc/yum.repos.d/mongo.repo
 VALIDATE "$?" "Adding MongoDB repository" 
 
-echo " Installing Mango DB" 
+echo "Installing Mango DB" 
 
 dnf install mongodb-org -y &>>$LOG_FILE
 VALIDATE "$?" "MongoDB"
