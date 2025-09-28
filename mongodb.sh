@@ -47,6 +47,5 @@ VALIDATE "$?" "MongoDB system enabled"
 sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
 VALIDATE "$?" "accessable to all IP's"
 
-systemctl start mongod &>>$LOG_FILE
+systemctl restart mongod &>>$LOG_FILE
 VALIDATE "$?" "MongoDB system started"
-
