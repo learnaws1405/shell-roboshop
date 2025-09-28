@@ -29,15 +29,15 @@ fi
 }
 
 cp mongo.repo /etc/yum.repos.d/mongo.repo
-VALIDATE "$?" "Adding MongoDB repository"
+VALIDATE "$?" "Adding MongoDB repository" 
 
-echo " Installing Mango BD"
+echo " Installing Mango DB" 
 
-dnf install mongodb-org -y 
+dnf install mongodb-org -y &>>$LOG_FILE
 VALIDATE "$?" "MongoDB"
 
-systemctl enable mongod
+systemctl enable mongod &>>$LOG_FILE
 VALIDATE "$?" "MongoDB system enabled"
 
-systemctl start mongod
+systemctl start mongod &>>$LOG_FILE
 VALIDATE "$?" "MongoDB system started"
