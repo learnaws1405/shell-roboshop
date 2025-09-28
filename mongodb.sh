@@ -34,13 +34,13 @@ VALIDATE "$?" "Adding MongoDB repository"
 echo "Installing Mango DB" 
 
 dnf list installed mongodb-org
-if [ $? -ne 0 ]; then
-    dnf install mongodb-org -y &>>$LOG_FILE
-    VALIDATE "$?" "MongoDB"
-else
-    echo "mongodb already installed :: $Y SKIPPING $N"
-    exit 1
-fi
+    if [ $? -ne 0 ]; then
+        dnf install mongodb-org -y &>>$LOG_FILE
+        VALIDATE "$?" "MongoDB"
+    else
+        echo "mongodb already installed :: $Y SKIPPING $N"
+        exit 1
+    fi
 
 systemctl enable mongod &>>$LOG_FILE
 VALIDATE "$?" "MongoDB system enabled"
