@@ -63,7 +63,7 @@ VALIDATE "$?" "changed directory"
 npm install
 VALIDATE "$?" "installed dependecies"
 
-cp $SCRIPT_L/catalouge.repo /etc/systemd/system/catalogue.service
+cp $SCRIPT_L/catalogue.repo /etc/systemd/system/catalogue.service
 VALIDATE "$?" "Systemctl added"
 
 systemctl daemon-reload
@@ -75,7 +75,7 @@ VALIDATE "$?" "systemctl enabled"
 systemctl start catalogue
 VALIDATE "$?" "systemctl started nodejs applciation"
 
-cp $SCRIPT_L/monoclient.repo /etc/yum.repos.d/mongo.repo
+cp $SCRIPT_L/mongoclient.repo /etc/yum.repos.d/mongo.repo
 VALIDATE "$?" "mongoclient repo added"
 
 dnf install mongodb-mongosh -y
