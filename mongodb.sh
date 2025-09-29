@@ -5,7 +5,7 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
-
+MONGODBHOST="mongodb.daws86s.fun"
 
 LOG_FOLDER="/var/log/shell-roboshop"
 SCRIPT_NAME=$( echo $0| cut -d "." -f1 )
@@ -18,7 +18,7 @@ if [ $USERID -ne 0 ]; then
 fi
 
 mkdir -p $LOG_FOLDER
-echo " Script started : $(date)" | tee -a $LOG_FILE
+echo " Script started : $(date)" 
 
 VALIDATE(){
 if [ $1 -ne 0 ]; then 
@@ -49,3 +49,5 @@ VALIDATE "$?" "accessable to all IP's"
 
 systemctl restart mongod &>>$LOG_FILE
 VALIDATE "$?" "MongoDB system started"
+
+
