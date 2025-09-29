@@ -5,7 +5,7 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 MONGODBHOST="mongodb.daws86s.fun"
-
+SCRIPT_L=$PWD
 LOG_FOLDER="/var/log/shell-roboshop"
 SCRIPT_NAME=$( echo $0| cut -d "." -f1 )
 LOG_FILE="$LOG_FOLDER/$SCRIPT_NAME.log"
@@ -57,10 +57,13 @@ rm -rf /app/*
 unzip /tmp/catalogue.zip
 VALIDATE "$?" "Unzipped bainaries"
 
-cd /app;npm install
-VALIDATE "$?" "Dependencies installed for nodejs application"
+cd /app
+VALIDATE "$?" "changed directory"
 
-cp catalouge.repo /etc/systemd/system/catalogue.service
+npm install
+VALIDATE "$?" "installed dependecies"
+
+cp $SCRIPT_L/catalouge.repo /etc/systemd/system/catalogue.service
 VALIDATE "$?" "Systemctl added"
 
 systemctl daemon-reload
@@ -72,7 +75,7 @@ VALIDATE "$?" "systemctl enabled"
 systemctl start catalogue
 VALIDATE "$?" "systemctl started nodejs applciation"
 
-cp monoclient.repo /etc/yum.repos.d/mongo.repo
+cp $SCRIPT_L/monoclient.repo /etc/yum.repos.d/mongo.repo
 VALIDATE "$?" "mongoclient repo added"
 
 dnf install mongodb-mongosh -y
