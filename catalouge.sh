@@ -41,7 +41,7 @@ if [ $? -ne 0]; then
     useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
     VALIDATE "$?" "user created"
 else
-    echo "user aready created ::$Y SKIPPING $N"
+    echo -e "user aready created ::$Y SKIPPING $N"
 fi
 
 mkdir -p /app
@@ -60,7 +60,7 @@ VALIDATE "$?" "Unzipped bainaries"
 cd /app
 VALIDATE "$?" "changed directory"
 
-npm install
+npm install &>>$LOG_FILE
 VALIDATE "$?" "installed dependecies"
 
 cp $SCRIPT_L/catalogue.repo /etc/systemd/system/catalogue.service
@@ -69,7 +69,7 @@ VALIDATE "$?" "Systemctl added"
 systemctl daemon-reload
 VALIDATE "$?" "daemon reload"
 
-systemctl enable catalogue
+systemctl enable catalogue &>>$LOG_FILE
 VALIDATE "$?" "systemctl enabled"
 
 systemctl start catalogue
