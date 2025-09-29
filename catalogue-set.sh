@@ -1,5 +1,5 @@
 
-set -euo pipefall
+set -euo pipefail
 
 trap 'echo "Error in $LINENO, and command belongs to $BASH_COMMAND"' ERR
 
