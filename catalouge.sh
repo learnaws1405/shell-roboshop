@@ -37,14 +37,14 @@ dnf install nodejs -y &>>$LOG_FILE
 VALIDATE "$?" "NodeJS 20 version installed"
 
 id roboshop
-if [ $? -ne 0]; then 
+if [ $? -ne 0 ]; then 
     useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
     VALIDATE "$?" "user created"
 else
     echo -e "user aready created ::$Y SKIPPING $N"
 fi
 
-mkdir -p /app
+mkdir -p /app   
 VALIDATE "$?" "Binary directory created"
 
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip
@@ -74,6 +74,12 @@ VALIDATE "$?" "systemctl enabled"
 
 systemctl start catalogue
 VALIDATE "$?" "systemctl started nodejs applciation"
+
+systemctl status catalogue
+if [ $? -ne 0 ]; then 
+   echo "check the services STARTED or NOT"
+   exit 1
+fi
 
 cp $SCRIPT_L/mongoclient.repo /etc/yum.repos.d/mongo.repo
 VALIDATE "$?" "mongoclient repo added"
