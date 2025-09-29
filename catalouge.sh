@@ -77,7 +77,7 @@ VALIDATE "$?" "systemctl started nodejs applciation"
 
 systemctl status catalogue
 if [ $? -ne 0 ]; then 
-   echo "check the services STARTED or NOT"
+   echo "PROBLEM in starting the service"
    exit 1
 fi
 
