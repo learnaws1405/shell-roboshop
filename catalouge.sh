@@ -84,17 +84,17 @@ fi
 cp $SCRIPT_L/mongoclient.repo /etc/yum.repos.d/mongo.repo
 VALIDATE "$?" "mongoclient repo added"
 
-dnf install mongodb-mongosh -y
+dnf install mongodb-mongosh -y &>>$LOG_FILE
 VALIDATE "$?" "mongoclient installed"
 
 
 
-INDEX=$(mongosh mmongodb.dlearnaws.fun --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')")
+INDEX=$(mongosh mongodb.dlearnaws.fun --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')")
 if [ $INDEX -lt 0 ]; then
  mongosh --host mongodb.dlearnaws.fun </app/db/master-data.js
  VALIDATE "$?" "loading master data to mongoDB"
 else
- echo "Master Data already loaded :: $Y SKIPPING $N"
+ echo -e "Master Data already loaded :: $Y SKIPPING $N"
 fi
 
 # /etc/systemd/system/catalogue.service
