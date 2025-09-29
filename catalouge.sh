@@ -87,9 +87,15 @@ VALIDATE "$?" "mongoclient repo added"
 dnf install mongodb-mongosh -y
 VALIDATE "$?" "mongoclient installed"
 
-mongosh --host mongodb.dlearnaws.fun </app/db/master-data.js
-VALIDATE "$?" "loading master data to mongoDB"
 
+
+INDEX=$(mongosh mmongodb.dlearnaws.fun --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')")
+if [ $INDEX -lt 0 ]; then
+ mongosh --host mongodb.dlearnaws.fun </app/db/master-data.js
+ VALIDATE "$?" "loading master data to mongoDB"
+else
+ echo "Master Data already loaded :: $Y SKIPPING $N"
+fi
 
 # /etc/systemd/system/catalogue.service
 # mongosh $MONGODBHOST --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')"
