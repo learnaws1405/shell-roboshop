@@ -19,10 +19,13 @@ SCRIPT_L=$PWD
 LOG_FOLDER="/var/log/shell-roboshop"
 SCRIPT_NAME=$( echo $0| cut -d "." -f1 )
 LOG_FILE="$LOG_FOLDER/$SCRIPT_NAME.log"
+FILESTODEL= $(find $SOURCE_DIR -name *.log -mtime +14)
 
 SOURCE_DIR=/home/ec2-user/shell-roboshop/app-logs
-if [ -d $SOURCE_DIR ]; then
-FILESTODEL= $(find $SOURCE_DIR -name *.log -mtime +14)
+if [ ! -d $SOURCE_DIR ]; then
+    echo "ERROR in directory"
+    exit 1 
+fi
 
 while IFS= read -r filepath
 do
