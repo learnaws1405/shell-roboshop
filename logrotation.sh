@@ -30,4 +30,4 @@ fi
 while IFS= read -r filepath
 do
     echo " deleting the files ::::$filepath"
-done <<< $SOURCE_DIR
+done <<< $FILESTODEL
