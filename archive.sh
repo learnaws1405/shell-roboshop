@@ -30,7 +30,7 @@ if [ ! -d $SOURCE_DIR ]; then
     exit 1 
 fi
 
-FILES=$(find $SOURCE_DIR -name *.log -mtime +$DAYS)
+FILES=$(find $SOURCE_DIR -name "*.log" -mtime +$DAYS)
 if [ ! -z "$FILES" ]; then 
         DATE=$(date +%F-%H-%M)
         ZIPFILE=$DESTD/app-log-$DATE.zip
