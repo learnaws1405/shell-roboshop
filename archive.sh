@@ -44,6 +44,7 @@ if [ ! -z "$FILES" ]; then
         else
             echo "ZIP SUCUESS"
         #echo " deleting the files ::::$filepath"
+        fi
 else 
     echo "NO ARCHIVE"
 fi
