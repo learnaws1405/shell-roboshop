@@ -34,7 +34,7 @@ FILES=$(find $SOURCE_DIR -name "*.log" -mtime +$DAYS)
 if [ ! -z "$FILES" ]; then 
         DATE=$(date +%F-%H-%M)
         ZIPFILE=$DESTD/app-log-$DATE.zip
-        echo $FILES| zip -@ -j "$ZIPFILE"
+        find $SOURCE_DIR -name "*.log" -mtime +$DAYS| zip -@ -j "$ZIPFILE"
         if [ -f "$ZIPFILE" ]; then
             echo "Archving SUCCESS "
             while IFS= read -r filepath
