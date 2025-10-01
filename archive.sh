@@ -33,10 +33,14 @@ fi
 FILES=$(find $SOURCE_DIR -name *.log -mtime +$DAYS)
 if [ ! -z "$FILES" ]; then 
         DATE=$(date +%F-%H-%M)
-        ZIPFILE=$DESTD/app-log-$DATE
-        echo $FILES| zip -@ -j $ZIPFILE.$DATE
-        if [ $? -ne 0 ];then
-            echo "error is zipping"
+        ZIPFILE=$DESTD/app-log-$DATE.zip
+        echo $FILES| zip -@ -j "$ZIPFILE"
+        if [ -f "$ZIPFILE" ]; then
+            while IFS= read -r filepath
+            do
+               rm -rf $filepath
+               echo "file deleted"
+            done <<< $FILES
         else
             echo "ZIP SUCUESS"
         #echo " deleting the files ::::$filepath"
