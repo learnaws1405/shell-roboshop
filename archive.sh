@@ -36,13 +36,14 @@ if [ ! -z "$FILES" ]; then
         ZIPFILE=$DESTD/app-log-$DATE.zip
         echo $FILES| zip -@ -j "$ZIPFILE"
         if [ -f "$ZIPFILE" ]; then
+            echo "Archving SUCCESS "
             while IFS= read -r filepath
             do
                rm -rf $filepath
                echo "file deleted"
             done <<< $FILES
         else
-            echo "ZIP SUCUESS"
+            echo "Archiving FAILURE"
         #echo " deleting the files ::::$filepath"
         fi
 else 
