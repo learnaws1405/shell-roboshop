@@ -10,4 +10,4 @@ do
     if [ $usage -ge $TH ];then
         echo 'DISK usage $part is $usage'
     fi
-done >>> $disk_usage
+done <<< $disk_usage
