@@ -11,7 +11,7 @@ do
     usage=$(echo $line|awk '{print $6}'| cut -d '%' -f1)
     part=$(echo $line|awk '{print $7}')
     if [ $usage -ge $TH ];then
-        MESSAGE1+="High usage on $part is $usage % <br>" 
+        MESSAGE1+="High usage on $part is $usage % \n" 
     fi
 done <<< $disk_usage
 
