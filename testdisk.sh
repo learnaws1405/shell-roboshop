@@ -4,7 +4,7 @@ disk_usage=$(df -hT | grep -iv filesystem)
 
 TH=2
 IP=$(curl -s  http://169.254.169.254/latest/meta-data/local-ipv4)
-MESSAGE1="''"
+MESSAGE1=""
 
 while IFS= read -r line
 do 
@@ -19,4 +19,4 @@ echo -e "$MESSAGE1"
 
 clean_output=$(echo "$MESSAGE1" | tr -d '\r')
 
-echo -e "$clean_output"
+echo  "$clean_output"
