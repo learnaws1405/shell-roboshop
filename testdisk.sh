@@ -1,13 +1,11 @@
 #! /sbin/bash
 
 disk_usage=$(df -hT | grep -iv filesystem)
-clean_output=$(echo "$disk_usage" | tr -d '\r')
 
-echo "$clean_output"
 
 TH=2
 IP=$(curl -s  http://169.254.169.254/latest/meta-data/local-ipv4)
-MESSAGE="''"
+MESSAGE1="''"
 TO_TEAM="DEVOPS TEAM"
 while IFS= read -r line
 do 
@@ -18,4 +16,8 @@ do
     fi
 done <<< $clean_output
 
-echo -e "$MESSAGE"
+echo -e "$MESSAGE1"
+
+clean_output=$(echo "$MESSAGE1" | tr -d '\r')
+
+echo "$clean_output"
