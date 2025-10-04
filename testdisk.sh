@@ -19,4 +19,4 @@ echo -e "$MESSAGE1"
 
 clean_output=$(echo "$MESSAGE1" | tr -d '\r')
 
-echo "$clean_output"
+echo -e "$clean_output"
