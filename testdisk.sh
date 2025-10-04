@@ -17,6 +17,6 @@ done <<< $disk_usage
 
 echo -e "$MESSAGE1"
 
-clean_output=$(echo "$MESSAGE1" | tr -d '\r')
+FORMATTED_BODY=$(echo $MESSAGE1|sed -e 's/[&/\]/\\&/g')
 
-echo  "$clean_output"
+echo "$FORMATTED_BODY"
