@@ -3,7 +3,7 @@
 disk_usage=$(df -hT | grep -iv filesystem)
 TH=2
 IP=$(curl -s  http://169.254.169.254/latest/meta-data/local-ipv4)
-MESSAGE1="''"
+MESSAGE="''"
 TO_TEAM="DEVOPS TEAM"
 while IFS= read -r line
 do 
@@ -14,8 +14,6 @@ do
     fi
 done <<< $disk_usage
 
-echo -e "$MESSAGE1"
-
-MESSAGE=$(echo "$MESSAGE1" | tr -d '\r')
+echo -e "$MESSAGE"
 
 sh mail.sh "rajivklce@gmail.com" "High disk usage" "High  DISK USAGE" "$MESSAGE" "$IP" "$TO_TEAM"

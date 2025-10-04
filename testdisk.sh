@@ -13,10 +13,10 @@ do
     if [ $usage -ge $TH ];then
         MESSAGE1+="High usage on $part is $usage % \n" 
     fi
-done <<< $clean_output
+done <<< $disk_usage
 
 echo -e "$MESSAGE1"
 
-#clean_output=$(echo "$MESSAGE1" | tr -d '\r')
+clean_output=$(echo "$MESSAGE1" | tr -d '\r')
 
-#echo "$clean_output"
+echo "$clean_output"
