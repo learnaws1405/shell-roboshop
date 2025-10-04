@@ -41,7 +41,7 @@ if [ ! -z "$FILES" ]; then
             do
                rm -rf $filepath
                echo "file deleted"
-            done <<< $FILES
+            done <<< $x
         else
             echo "Archiving FAILURE"
         #echo " deleting the files ::::$filepath"
