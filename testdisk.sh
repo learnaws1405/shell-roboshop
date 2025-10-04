@@ -2,7 +2,6 @@
 
 disk_usage=$(df -hT | grep -iv filesystem)
 
-
 TH=2
 IP=$(curl -s  http://169.254.169.254/latest/meta-data/local-ipv4)
 MESSAGE1="''"
@@ -12,7 +11,7 @@ do
     usage=$(echo $line|awk '{print $6}'| cut -d '%' -f1)
     part=$(echo $line|awk '{print $7}')
     if [ $usage -ge $TH ];then
-        MESSAGE+="High usage on $part is $usage % \n" 
+        MESSAGE1+="High usage on $part is $usage % \n" 
     fi
 done <<< $clean_output
 
